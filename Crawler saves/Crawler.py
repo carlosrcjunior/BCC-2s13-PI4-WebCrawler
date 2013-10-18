@@ -1,17 +1,19 @@
 import urllib
 from bs4 import BeautifulSoup
 import urlparse
+import Tempo_Carregamento
 
 #Site do crawler
 siteurl = raw_input('Digite o site desejado: ')
 link = siteurl.strip()
 final = ""
-#Verifica se o link começa com http://,www para que o crawler possa funcionar
+
+#Verifica se o link começa com http://www para que o crawler possa funcionar
 if link[:4] != "www." and link[:7] != "http://":
     final = "http://www." + link
     print("Formal final: " + final)
 
-if link[:4] == "www.":
+if link[:4] == "www." or link[:8] == "https://":
     final = "http://" + link
     print("Formal final: " + final)
 
@@ -31,3 +33,17 @@ for tag in soup.findAll('a',href=True):
     lista.append(newurl)
     #print (newurl)
     
+#Lista de URL's
+print(lista)
+
+#função para calcular a latencia
+print("Chamando função para calcular a latencia")
+latencia = Tempo_Carregamento.PingTest(final)
+print(str(latencia)+" ms")
+
+#função para calcular o tempo de load da pagina
+loadTime = Tempo_Carregamento.WebLoadTime(final)
+print("Chamando função para calcular o tempo de load da pagina")
+print(str(loadTime)+" sec")
+
+
