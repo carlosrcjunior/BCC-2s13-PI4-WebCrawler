@@ -1,22 +1,18 @@
 # -*- coding: cp1252 -*-
 # Teste DB
-# Verificar não grava no DB
-import sqlite3 as lite
+import sqlite3
 
-c = lite.connect('teste.db')
+c = sqlite3.Connection('teste.db')
 cursor = c.cursor()
 
-#cursor.execute('SELECT * FROM CADASTRO')
 
-#cursor.execute("INSERT INTO FUNCIONARIO (id,Nome) values (12,'Alberto')")
-#cursor.execute("CREATE TABLE CADASTRO(Id INT, Name TEXT)")
-cursor.execute("INSERT INTO CADASTRO VALUES(1900 , 'JOSE')")
-cursor.execute("INSERT INTO CADASTRO VALUES(1000 , 'JORGE')")
-cursor.execute("INSERT INTO CADASTRO VALUES(2 , 'JUVENAL')")
-cursor.commit()
-cursor.execute('SELECT * FROM CADASTRO')
+cursor.execute('INSERT INTO FUNCIONARIO (Id,"Nome") values (22,"Reginaldo ROSSI")')
+cursor.execute('SELECT * FROM FUNCIONARIO')
+c.commit()# Conclui operação no BD
 
-dados = cursor.fetchall() 
 
-print dados
+dados = cursor.fetchall()
 
+for exibir in dados:
+
+    print exibir
