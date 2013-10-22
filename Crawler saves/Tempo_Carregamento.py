@@ -9,24 +9,32 @@ def PingTest(web):
     trys = 3
     ms = []
     while trys != 0:
-        if web[:7] == "http://":
+        if (web[:7] == "http://"):
             web = web[7:]
-        elif web[:8] == "https://":
+        elif (web[:8] == "https://"):
             web = web[8:]
         strs = os.popen("ping " + web).read()
         time=strs[strs.rfind(' ')+1:strs.rfind('ms')]
         trys = trys - 1
-        ms.append(int(time))
+        #Verifica se o limite de tempo de resposta foi esgotado
+        if (time.isdigit() == True):
+            ms.append(int(time))
         #print (trys)
-    s = sum(ms)
-    d = len(ms)
-    media = s/d
-    return media
-
+    if (len(ms)>0):
+        s = sum(ms)
+        d = len(ms)
+        media = s/d
+        return media
+    elif (len(ms)== 0):
+        media = False
+        return media
+#----------------------------------------------------------------------------
+#Tests
 ##site = raw_input ("site: ")
 ##time = PingTest(site)
 ##print (str(time)+"ms")
-
+#----------------------------------------------------------------------------
+#Calcula o tempo de carregamento
 def WebLoadTime(web):
     stream = urllib2.urlopen(web)
     start_time = time()
@@ -37,3 +45,14 @@ def WebLoadTime(web):
     #print(round(end_time-start_time, 3))
     tempo = round(end_time-start_time, 3)
     return tempo
+#----------------------------------------------------------------------------
+
+#Tests
+##site = raw_input ("site: ")
+##pingTime = PingTest(site)
+##loadTime = WebLoadTime(site)
+##if (pingTime == False):
+##    print("Site não respondeu")
+##elif (pingTime != False):
+##    print (str(pingTime)+"ms")
+##print ("Tempo carregamento: "+str(loadTime))

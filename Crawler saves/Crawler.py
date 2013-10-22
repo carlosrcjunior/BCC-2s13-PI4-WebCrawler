@@ -16,7 +16,7 @@ if link[:4] != "www." and link[:7] != "http://":
 if link[:4] == "www." or link[:8] == "https://":
     final = "http://" + link
     print("Formal final: " + final)
-
+#----------------------------------------------------------------------------
 htmltext = urllib.urlopen(final)
 soup = BeautifulSoup(htmltext)
 lista = [final]
@@ -32,18 +32,22 @@ for tag in soup.findAll('a',href=True):
     #cria uma lista com todas urls
     lista.append(newurl)
     #print (newurl)
-    
+#----------------------------------------------------------------------------   
 #Lista de URL's
 print(lista)
 
 #função para calcular a latencia
 print("Chamando função para calcular a latencia")
 latencia = Tempo_Carregamento.PingTest(final)
-print(str(latencia)+" ms")
-
+if (latencia == False):
+    print("Site não respondeu")
+elif (latencia != False):
+    print (str(pingTime)+"ms")
+#----------------------------------------------------------------------------
 #função para calcular o tempo de load da pagina
 loadTime = Tempo_Carregamento.WebLoadTime(final)
 print("Chamando função para calcular o tempo de load da pagina")
 print(str(loadTime)+" sec")
+#----------------------------------------------------------------------------
 
 
