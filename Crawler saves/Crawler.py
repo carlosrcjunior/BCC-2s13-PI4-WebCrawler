@@ -1,7 +1,15 @@
-import urllib
 from bs4 import BeautifulSoup
+from django import http
+import urllib
 import urlparse
 import Tempo_Carregamento
+
+try:
+    request = http.request.get('google.com/admin')
+    #request = requests.get('google.com/admin') #Should return 404
+
+except requests.HTTPError, e:
+   print 'HTTP ERROR %s occured' % e.code
 
 #Site do crawler
 siteurl = raw_input('Digite o site desejado: ')
