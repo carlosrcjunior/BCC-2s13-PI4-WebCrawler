@@ -37,13 +37,6 @@ def VerificaStatus(lista):
                 path2 = path2+'/'+a
             volta = GetStatusCode(split[0],path2)
             errolist.append(volta)
-##        #Monta o errolist
-##        if volta == True:
-##            errolist.append(True)
-##        elif volta >= 400:
-##            errolist.append(True)
-##        elif volta < 400:
-##            errolist.append(False)
     return errolist
 #-----------------------------------------------------------------
 
@@ -52,23 +45,14 @@ def StatusCodeList(code):
     for list in code:		
 	if list >= 100 and list < 200:
             msg.append("Mensagem Informativa")
-		#return "Mensagem Informativa"
 	elif list >= 200 and list < 300:
             msg.append("Mensagem de Sucesso")
-		#return "Mensagem de Sucesso"
 	elif list >= 300 and list < 400:
             msg.append("Mensagem de Redirecionamento")
-		#return "Mensagem de Redirecionamento"
 	elif list >= 400 and list < 500:
             msg.append("Mensagem de Erro de Cliente")
-		#return "Mensagem de Erro de Cliente"
 	else:
             msg.append("Código não Encontrado")
-		#return "Código não Encontrado"
     return msg
 
 #-----------------------------------------------------------------
-##lista=['http://www.google.com/a/b','www.uol.com.br','www.a.com.br','stackoverflow.com/nonexistant']
-##VerificaStatus(lista)
-##print 'Saiu do For'
-##print errolist

@@ -10,15 +10,18 @@ siteurl = raw_input('Digite o site desejado(Com http://): ')
 link = siteurl.strip()
 final = link
 
-####Retirar?
-###Verifica se o link começa com http://www para que o crawler possa funcionar obs: tentar sem www depois com www
-##if link[:4] != "www." and link[:7] != "http://":
-##    final = "http://www." + link
-##    print("Formal final: " + final)
-##
-##if link[:4] == "www." or link[:8] == "https://":
-##    final = "http://" + link
-##    print("Formal final: " + final)
+if (final.count('/')>2):
+    if (final[:7] == 'http://'):
+        aux = final[7:]
+        pos = aux.find('/') + 8
+        main =final[:pos]
+
+    elif (final[:8] == 'https://'):
+        aux = final[8:]
+        pos = aux.find('/') + 9
+        main =final[:pos]
+elif (final.count('/')==2):
+    main = final
 
 htmltext = urllib.urlopen(final)
 soup = BeautifulSoup(htmltext)
@@ -27,24 +30,30 @@ listaURL = [final]
 for tag in soup.findAll('a',href=True):
     raw = tag['href']
     b1 = urlparse.urlparse(tag['href']).hostname
-    if b1 == None:
-        b1 = final
+    if b1 == None:        
+        b1 = main
     b2 = urlparse.urlparse(tag['href']).path
-    #Monta a url
-    #newurl = "http://" + str(b1) + str(b2)
     newurl = str(b1) + str(b2)
     #cria uma lista com todas urls
     listaURL.append(newurl)
-    #print (newurl)
     
 #Mostra a lista de URL's
 for list in listaURL:
     print(list)
 
 #função para calcular a latencia
-print("Chamando função para calcular a latencia")
-latencia = Tempo_Carregamento.PingTest(final)
-print(str(latencia)+" ms")
+try:
+    print("Chamando função para calcular a latencia")
+    latencia = Tempo_Carregamento.PingTest(final)
+    print(str(latencia)+" ms")
+except ValueError:
+    try:
+        a = main[:len(main)-1]
+        latencia = Tempo_Carregamento.PingTest(a)
+        print(str(latencia)+" ms")
+    except ValueError:
+        print "Não foi possivel calcular o tempo de latencia"
+        latencia = None
 
 #função para calcular o tempo de load da pagina
 print("Chamando função para calcular o tempo de load da pagina")
