@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class user(models.Model):
     idUser = models.IntegerField()
     nome = models.CharField(max_length=30)
@@ -17,8 +16,5 @@ class site(models.Model):
 
     idSite = models.IntegerField()
     url = models.CharField(max_length=100)
-    
-    
-
 
     
