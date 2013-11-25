@@ -16,3 +16,5 @@ loadTime = Crawler.loadTime(final)
 StatusCode = Crawler.StatusCode(listaURL)
 #Retorna a Descrição dos codigos
 StatusCodeMsg = Crawler.StatusCodeMSG(StatusCode)
+
+
