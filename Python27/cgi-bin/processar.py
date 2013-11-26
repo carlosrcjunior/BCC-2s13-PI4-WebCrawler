@@ -65,7 +65,7 @@ html4 = '''
 </html>
 '''
 formulario = cgi.FieldStorage()
-site = "http://google.com"#formulario.getvalue("nome")
+site = formulario.getvalue("nome")
 print html1
 import urllib
 import urllib2
