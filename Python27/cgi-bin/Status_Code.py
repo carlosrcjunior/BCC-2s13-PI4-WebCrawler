@@ -16,18 +16,20 @@ def GetStatusCode(host, path="/"):
         resp = conn.getresponse().status
         #print resp
         return resp
-    except StandardError:
+    except:
         #print('StandardError')
-        return True
+        return 500
 #-----------------------------------------------------------------
 
 def VerificaStatus(lista):
     errolist = []
+    tamanho = len(lista)
     for list in lista:
         if list[:7] == "http://":
             list = list[7:]
         split = list.split('/')
         if(len(split)==1):
+            
             volta = GetStatusCode(list)
         elif(len(split)!=1):
             path = split[1:]
@@ -36,8 +38,11 @@ def VerificaStatus(lista):
                 a = list
                 path2 = path2+'/'+a
             volta = GetStatusCode(split[0],path2)
-            errolist.append(volta)
-    return errolist
+        errolist.append(volta)
+        t = len(errolist)
+        if tamanho == t:
+            return errolist
+    
 #-----------------------------------------------------------------
 
 def StatusCodeList(code):

@@ -8,12 +8,17 @@ print '''
 <head>
         <title>Web Crawler</title>
 </head>
-<body background="http://www.wingsdove.com/free-backgrounds/background-offwhite-01.jpg" text="#dc7639">
+<h1 align = "center"><img src = "http://www.masterstech-home.com/Links/Search_Engine_Links/WebCrawler/SurferSpidey.gif"
+vspace = "20px"
+hspace = "20px"
+align = "center"
+/></h1>
+<body bgcolor="#d0d0d0" text="#dc7639">
         <h1 align="center"> Web Crawler</h1>
         <br>
         <form action="processar.py" method="post">
-        <p> <strong>Web Site:</strong><input type="text" name="nome" id="nome" value=""/></p>
-        <br> <input type="submit"     value="Ok"/>
+        <p><h1 align="center"> <strong>Web Site:</strong><input type="text"
+        name="nome" id="nome" value=""/><input type="submit"     value="Ok"/></h1>
         </form>
 </body>
 </html> '''
