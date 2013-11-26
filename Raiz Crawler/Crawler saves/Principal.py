@@ -1,3 +1,4 @@
+#-*- coding: ISO-8859-1 -*-
 import urllib
 import urllib2
 import urlparse
@@ -14,7 +15,7 @@ latencia = Crawler.latencia(final)
 loadTime = Crawler.loadTime(final)
 #Retorna os codigos das URLs
 StatusCode = Crawler.StatusCode(listaURL)
-#Retorna a Descrição dos codigos
+#Retorna a Descriï¿½ï¿½o dos codigos
 StatusCodeMsg = Crawler.StatusCodeMSG(StatusCode)
 
 
