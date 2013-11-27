@@ -94,8 +94,10 @@ StatusCodeMsg = Crawler.StatusCodeMSG(StatusCode)
 
 if fail == False:
     print html2 % (listaURL[0],latencia,loadTime,StatusCode[0],StatusCodeMsg[0])
+    BD.gravaBD(listaURL[0],StatusCode[0],StatusCodeMsg[0])
 elif fail == True:
     print html2 % (listaURL[0],"erro",loadTime,StatusCode[0],StatusCodeMsg[0])
+    BD.gravaBD(listaURL[0],StatusCode[0],StatusCodeMsg[0])
 
 print html4
 aux = 0
